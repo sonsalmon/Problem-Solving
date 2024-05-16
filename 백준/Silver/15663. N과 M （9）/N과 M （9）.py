@@ -20,16 +20,16 @@ def solution():
     #     for i in range(n):
     #         if not visited[i]:
     #             visited[i] = True
-    result_set = set()
     def dfs(result):
-        if len(result)==m and str(result) not in result_set:
-            result_set.add(str(result))
+        if len(result)==m :
             print(*result)
             return
+        remember = 0
         for i in range(n):
-            if not visited[i]:
+            if not visited[i] and remember != num_list[i]:
                 visited[i] = True
                 result.append(num_list[i])
+                remember = num_list[i]
                 dfs(result)
                 visited[i] = False
                 result.pop()
