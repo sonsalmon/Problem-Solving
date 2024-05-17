@@ -14,7 +14,8 @@ b가 홀수라면 -> 1을 붙인거임
 O(2n)까지 되는건가??
 '''
 
-def solution():
+# 그리디
+def solution1():
     a,b = map(int,input().split())
     
     cnt = 0
@@ -31,5 +32,25 @@ def solution():
 
     return cnt + 1
 
+# bfs
+from collections import deque
+def solution2():
+    a,b = map(int,input().split())
+    ans = 0
+    cnt = 1
+    q = deque()
+    q.append((a,cnt))
+    while q:
+        ans,cnt = q.popleft()
+        if ans==b:
+            return cnt
+        else:
+            if ans *2 <=b:
+                q.append((2*ans,cnt+1))
+            if ans *10 + 1 <=b: 
+                q.append((10*ans +1,cnt+1))
+    return -1
+            
 if __name__ == "__main__":
-    print(solution())
+    # print(solution1())
+    print(solution2())
